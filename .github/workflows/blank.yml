@@ -36,6 +36,7 @@ jobs:
           brew untap homebrew/core
           brew cleanup
           brew update-reset
+          brew doctor
           brew update
           brew upgrade
           brew services start postgresql
