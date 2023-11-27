@@ -35,6 +35,7 @@ jobs:
           brew untap homebrew/cask
           brew untap homebrew/core
           brew cleanup
+          brew uninstall openssl@1.1
           brew update
           echo "HGZ-1"
           brew upgrade
