@@ -32,13 +32,14 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          brew untap homebrew/cask
-          brew untap homebrew/core
+          # brew untap homebrew/cask
+          # brew untap homebrew/core
           brew cleanup
-          brew uninstall openssl@1.1
+          brew update-reset
+          # brew uninstall openssl@1.1
           brew update
           echo "HGZ-1"
-          brew upgrade -y
+          brew upgrade
           echo "HGZ-2"
           brew services start postgresql
           echo "HGZ-3"
