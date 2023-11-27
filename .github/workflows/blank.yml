@@ -38,7 +38,7 @@ jobs:
           brew uninstall openssl@1.1
           brew update
           echo "HGZ-1"
-          brew upgrade
+          brew upgrade -y
           echo "HGZ-2"
           brew services start postgresql
           echo "HGZ-3"
