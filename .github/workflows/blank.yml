@@ -32,21 +32,22 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          cd "$(brew --repo)"
-          git remote -v
-          git pull origin master
+          brew untap homebrew/cask
+          brew untap homebrew/core
+          brew cleanup
+          brew update-reset
           brew update
           brew upgrade
-          # brew services start postgresql
-          # brew install mariadb@10.5 sqlite
-          # # pg_ctl -D /usr/local/var/postgres start
-          # sleep 3
-          # createuser casbin_rs
-          # createdb casbin
-          # psql postgres -c "alter user casbin_rs with encrypted password 'casbin_rs'; grant all privileges on database casbin to casbin_rs;"
-          # echo "/usr/local/opt/mariadb@10.5/bin" >> $GITHUB_PATH
-          # /usr/local/opt/mariadb@10.5/bin/mysql_install_db
-          # /usr/local/opt/mariadb@10.5/bin/mysql.server start
-          # sleep 3
-          # /usr/local/opt/mariadb@10.5/bin/mysql -e "create user 'casbin_rs'@'localhost' identified by 'casbin_rs'; create database casbin; grant all on \`casbin\`.* to 'casbin_rs'@'localhost';" -urunner
-          # echo "MYSQLCLIENT_LIB_DIR=/usr/local/opt/mariadb@10.5/lib" >> $GITHUB_ENV
+          brew services start postgresql
+          brew install mariadb@10.5 sqlite
+          # pg_ctl -D /usr/local/var/postgres start
+          sleep 3
+          createuser casbin_rs
+          createdb casbin
+          psql postgres -c "alter user casbin_rs with encrypted password 'casbin_rs'; grant all privileges on database casbin to casbin_rs;"
+          echo "/usr/local/opt/mariadb@10.5/bin" >> $GITHUB_PATH
+          /usr/local/opt/mariadb@10.5/bin/mysql_install_db
+          /usr/local/opt/mariadb@10.5/bin/mysql.server start
+          sleep 3
+          /usr/local/opt/mariadb@10.5/bin/mysql -e "create user 'casbin_rs'@'localhost' identified by 'casbin_rs'; create database casbin; grant all on \`casbin\`.* to 'casbin_rs'@'localhost';" -urunner
+          echo "MYSQLCLIENT_LIB_DIR=/usr/local/opt/mariadb@10.5/lib" >> $GITHUB_ENV
