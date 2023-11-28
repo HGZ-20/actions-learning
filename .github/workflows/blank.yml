@@ -32,10 +32,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          brew cleanup
-          brew update-reset
           brew update
-          echo "HGZ-1"
+          brew uninstall --ignore-dependencies node
+          brew install node@18
+          brew link --overwrite node@18
           brew upgrade
           echo "HGZ-2"
           brew services start postgresql
