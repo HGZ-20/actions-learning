@@ -37,27 +37,16 @@ jobs:
           brew install node@18
           brew link --overwrite node@18
           brew upgrade
-          echo "HGZ-2"
           brew services start postgresql
-          echo "HGZ-3"
           brew install mariadb@10.5 sqlite
-          echo "HGZ-4"
           # pg_ctl -D /usr/local/var/postgres start
           sleep 3
           createuser casbin_rs
-          echo "HGZ-5"
           createdb casbin
-          echo "HGZ-6"
           psql postgres -c "alter user casbin_rs with encrypted password 'casbin_rs'; grant all privileges on database casbin to casbin_rs;"
-          echo "HGZ-7"
           echo "/usr/local/opt/mariadb@10.5/bin" >> $GITHUB_PATH
-          echo "HGZ-8"
           /usr/local/opt/mariadb@10.5/bin/mysql_install_db
-          echo "HGZ-9"
           /usr/local/opt/mariadb@10.5/bin/mysql.server start
-          echo "HGZ-10"
           sleep 3
           /usr/local/opt/mariadb@10.5/bin/mysql -e "create user 'casbin_rs'@'localhost' identified by 'casbin_rs'; create database casbin; grant all on \`casbin\`.* to 'casbin_rs'@'localhost';" -urunner
-          echo "HGZ-11"
           echo "MYSQLCLIENT_LIB_DIR=/usr/local/opt/mariadb@10.5/lib" >> $GITHUB_ENV
-          echo "HGZ-12"
